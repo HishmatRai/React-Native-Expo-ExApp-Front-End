@@ -27,6 +27,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.ExApp.ExApp",
+      "versionCode": 1
     }
   }
 }

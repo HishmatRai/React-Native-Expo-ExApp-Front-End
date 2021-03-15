@@ -4,26 +4,19 @@ import {
   StyleSheet,
   Text,
   Dimensions,
-  TextInput,
   StatusBar,
   ScrollView,
   TouchableOpacity,
   Image,
 } from "react-native";
-import { FontAwesome, EvilIcons } from "@expo/vector-icons";
-
-// import Chart from './../../Components/Chart/Chart'
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
-
 const Profile = (props) => {
   const [dimensions, setDimensions] = useState({ window, screen });
-
   const onChange = ({ window, screen }) => {
     setDimensions({ window, screen });
   };
 
-  
   useEffect(() => {
     Dimensions.addEventListener("change", onChange);
     return () => {
@@ -47,6 +40,8 @@ const Profile = (props) => {
   ];
   return (
     <View style={styles.container}>
+
+      {/* ---------------------> STATUS BAR <--------------------- */}
       <StatusBar
         barStyle="dark-content"
         hidden={false}
@@ -54,13 +49,19 @@ const Profile = (props) => {
         translucent={true}
       />
 
+      {/* ---------------------> HEADER <--------------------- */}
       <TouchableOpacity style={styles._header}>
         <Text style={styles._header_text}>Setting</Text>
       </TouchableOpacity>
 
+      {/* ---------------------> BODY <--------------------- */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles._main}>
+
+          {/* ---------------------> HEADING <--------------------- */}
           <Text style={styles._heading}>Profile</Text>
+
+          {/* ---------------------> PROFILE <--------------------- */}
           <View style={styles._profile_main}>
             <Image
               source={require("./../../images/profile_image.png")}
@@ -73,6 +74,7 @@ const Profile = (props) => {
             </View>
           </View>
 
+          {/* ---------------------> DASHBOARD <--------------------- */}
           <Text style={styles._Dashboard}>Dashboard</Text>
           {CardData.map((v, i) => {
             return (
@@ -81,6 +83,8 @@ const Profile = (props) => {
                   {v._Money_Overview_heading}
                 </Text>
                 <View style={styles._Money_Overview_Card_Main}>
+
+                  {/* ---------------------> CARD 01 <--------------------- */}
                   <View style={styles._total_percentage_card}>
                     <Text style={styles._total_percentage_heading}>
                       {v._total_percentage_heading}
@@ -90,6 +94,8 @@ const Profile = (props) => {
                     </Text>
                     <Image source={require("./../../images/graph1.png")} />
                   </View>
+
+                  {/* ---------------------> CARD 02 <--------------------- */}
                   <View style={styles._total_percentage_card}>
                     <Text style={styles._total_percentage_heading}>
                       {v.second_Card_Heading}

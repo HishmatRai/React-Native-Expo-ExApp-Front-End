@@ -4,12 +4,9 @@ import {
   StyleSheet,
   Text,
   Dimensions,
-  TextInput,
   StatusBar,
   ScrollView,
   TouchableOpacity,
-  Image,
-  TextPropTypes,
 } from "react-native";
 import {
   Ionicons,
@@ -20,10 +17,8 @@ import {
 import DatePicker from "./../../Components/DatePiker/DatePiker";
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
-
 const History = (props) => {
   const [dimensions, setDimensions] = useState({ window, screen });
-  const [active, setActive] = useState(0);
   const onChange = ({ window, screen }) => {
     setDimensions({ window, screen });
   };
@@ -38,22 +33,33 @@ const History = (props) => {
   let UserName = [{ UserName: "Shed Name" }, { UserName: "Shed Name" }];
   return (
     <View style={styles.container}>
+
+      {/* ---------------------> STATUS BAR <--------------------- */}
       <StatusBar
         barStyle="dark-content"
         hidden={false}
         backgroundColor="white"
         translucent={true}
       />
+
+      {/* ---------------------> HEADER <--------------------- */}
       <View style={styles._header}>
         <Text style={styles._header_text}>History</Text>
-        <TouchableOpacity>
+
+        {/* ---------------------> ADD DAY <--------------------- */}
+        <TouchableOpacity onPress={() => props.navigation.navigate("AddDay")}>
           <Text style={styles._add_day_btn_text}>Add Day</Text>
         </TouchableOpacity>
       </View>
+
+      {/* ---------------------> BODY <--------------------- */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles._main}>
+
+          {/* ---------------------> CALENDER PICKER <--------------------- */}
           <DatePicker />
 
+          {/* ---------------------> CARD <--------------------- */}
           {UserName.map((v, i) => {
             return (
               <View style={styles.shed_name_card_main}>
@@ -127,16 +133,25 @@ const History = (props) => {
         </View>
       </ScrollView>
 
+      {/* ---------------------> TABS <--------------------- */}
       <View style={styles._tab_main}>
-        <TouchableOpacity style={styles._tab_btn}>
+
+        {/* ---------------------> HISTORY <--------------------- */}
+        <TouchableOpacity style={styles._tab_btn}
+          onPress={() => props.navigation.navigate("History")}>
           <Ionicons name="map-sharp" size={24} color="white" />
           <Text style={styles._tab_text}>History</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles._tab_btn}>
+        {/* ---------------------> PROFILE <--------------------- */}
+        <TouchableOpacity style={styles._tab_btn}
+          onPress={() => props.navigation.navigate("Profile")}>
           <FontAwesome name="user-circle" size={24} color="white" />
           <Text style={styles._tab_text}>Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles._tab_btn}>
+
+        {/* ---------------------> START RUN <--------------------- */}
+        <TouchableOpacity style={styles._tab_btn}
+          onPress={() => props.navigation.navigate("Run")}>
           <MaterialCommunityIcons name="update" size={24} color="white" />
           <Text style={styles._tab_text}>Start Run</Text>
         </TouchableOpacity>

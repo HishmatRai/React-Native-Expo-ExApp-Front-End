@@ -1,30 +1,24 @@
-let UserName = [{ UserName: "Shed Name" }, { UserName: "Shed Name" }];
 import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
   Text,
   Dimensions,
-  TextInput,
   StatusBar,
   ScrollView,
   TouchableOpacity,
-  Image,
-  TextPropTypes,
 } from "react-native";
 import {
   Ionicons,
-  MaterialIcons,
   FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import DatePicker from "./../../Components/DatePiker/DatePiker";
+import CounterDown from './../../Components/CounterDown/CounterDown';
+import StopWatch from './../../Components/StopWatch/StopWatch'
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
-
 const Run = (props) => {
   const [dimensions, setDimensions] = useState({ window, screen });
-  const [active, setActive] = useState(0);
   const onChange = ({ window, screen }) => {
     setDimensions({ window, screen });
   };
@@ -35,10 +29,10 @@ const Run = (props) => {
       Dimensions.removeEventListener("change", onChange);
     };
   });
-
-  let UserName = [{ UserName: "Shed Name" }, { UserName: "Shed Name" }];
   return (
     <View style={styles.container}>
+
+      {/* ---------------------> STATUS BAR <--------------------- */}
       <StatusBar
         barStyle="dark-content"
         hidden={false}
@@ -46,23 +40,43 @@ const Run = (props) => {
         translucent={true}
       />
 
+      {/* ---------------------> BODY <--------------------- */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles._main}>
+
+          {/* ---------------------> HEADING <--------------------- */}
           <Text style={styles._heading}>SHEARERS WATCH</Text>
+
+          {/* ---------------------> STOP WATCH <--------------------- */}
           <Text style={styles._sub_heading}>Time into Run</Text>
+          <StopWatch />
+
+          {/* ---------------------> COUNTER DOWN <--------------------- */}
+          <Text style={styles._counter_Down}>Cutter Countdown</Text>
+          <CounterDown />
         </View>
       </ScrollView>
 
+      {/* ---------------------> TABS <--------------------- */}
       <View style={styles._tab_main}>
-        <TouchableOpacity style={styles._tab_btn}>
+
+        {/* ---------------------> HISTORY <--------------------- */}
+        <TouchableOpacity style={styles._tab_btn}
+          onPress={() => props.navigation.navigate("History")}>
           <Ionicons name="map-sharp" size={24} color="white" />
           <Text style={styles._tab_text}>History</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles._tab_btn}>
+
+        {/* ---------------------> PROFILE <--------------------- */}
+        <TouchableOpacity style={styles._tab_btn}
+          onPress={() => props.navigation.navigate("Profile")}>
           <FontAwesome name="user-circle" size={24} color="white" />
           <Text style={styles._tab_text}>Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles._tab_btn}>
+
+        {/* ---------------------> START RUN <--------------------- */}
+        <TouchableOpacity style={styles._tab_btn}
+          onPress={() => props.navigation.navigate("Run")}>
           <MaterialCommunityIcons name="update" size={24} color="white" />
           <Text style={styles._tab_text}>Start Run</Text>
         </TouchableOpacity>
@@ -92,6 +106,14 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     marginTop: 20,
+  },
+  _counter_Down: {
+    fontSize: 20,
+    color: "black",
+    textAlign: "center",
+    justifyContent: "center",
+    fontWeight: "bold"
+
   },
 
   //   tab

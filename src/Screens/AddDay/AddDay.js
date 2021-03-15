@@ -9,13 +9,10 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-  TextPropTypes,
 } from "react-native";
-import { FontAwesome, Entypo } from "@expo/vector-icons";
-// import DatePicker from "./../../Components/DatePiker/DatePiker";
+import { Entypo } from "@expo/vector-icons";
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
-
 const AddDay = (props) => {
   const [dimensions, setDimensions] = useState({ window, screen });
   const [active, setActive] = useState(0);
@@ -37,29 +34,39 @@ const AddDay = (props) => {
   ];
   return (
     <View style={styles.container}>
+
+      {/* ---------------------> STATUS BAR <--------------------- */}
       <StatusBar
         barStyle="dark-content"
         hidden={false}
         backgroundColor="white"
         translucent={true}
       />
+
+      {/* ---------------------> HEADER <--------------------- */}
       <View style={styles._header}>
-        <TouchableOpacity>
+        {/* ---------------------> CLOSE BUTTON <--------------------- */}
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Entypo name="circle-with-cross" size={24} color="black" />
         </TouchableOpacity>
         <Text style={styles._header_text}>Add Day</Text>
         <Text style={{ color: "white" }}>Add Day</Text>
       </View>
+
+      {/* ---------------------> BODY <--------------------- */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles._main}>
-          <Text style={styles.select_Dat}>Select a Day</Text>
-  
-        <Text style={styles._date_show}>Feb 28, 2021</Text>
 
+          {/* ---------------------> TITLE <--------------------- */}
+          <Text style={styles.select_Dat}>Select a Day</Text>
+          <Text style={styles._date_show}>Feb 28, 2021</Text>
+
+          {/* ---------------------> TALLY <--------------------- */}
           <Text style={styles.enter_tally}>Enter Tally</Text>
           <TextInput style={styles._input} />
-          <Text style={styles.select_type}>Select Type</Text>
 
+          {/* ---------------------> SELECT TYPE <--------------------- */}
+          <Text style={styles.select_type}>Select Type</Text>
           <View style={styles._buttons_main}>
             {ButtonsValue.map((v, i) => {
               return (
@@ -68,39 +75,47 @@ const AddDay = (props) => {
                   onPress={() => setActive(i)}
                   style={
                     active === i
-                      ? {          backgroundColor: "#D6DED5",
-                      borderRadius: 5,
-                      width: 100,
-                      paddingTop: 0, }
-                      : {   backgroundColor: "white",
-                      width: 100,
-                      padding: 0,}
+                      ? {
+                        backgroundColor: "#D6DED5",
+                        borderRadius: 5,
+                        width: 100,
+                        paddingTop: 0,
+                      }
+                      : {
+                        backgroundColor: "white",
+                        width: 100,
+                        padding: 0,
+                      }
                   }
                 >
                   <Text style={
-                      active === i
-                        ? {
-                            textAlign: "center",
-                            fontSize: 17,
-                            fontWeight: "bold",
-                            color: "black",
-                          }
-                        : {
-                            textAlign: "center",
-                            fontSize: 17,
-                            fontWeight: "bold",
-                            color: "#A6A6A6",
-                          }
-                    }>{v.value}</Text>
+                    active === i
+                      ? {
+                        textAlign: "center",
+                        fontSize: 17,
+                        fontWeight: "bold",
+                        color: "black",
+                      }
+                      : {
+                        textAlign: "center",
+                        fontSize: 17,
+                        fontWeight: "bold",
+                        color: "#A6A6A6",
+                      }
+                  }>{v.value}</Text>
                 </TouchableOpacity>
               );
             })}
           </View>
+
+          {/* ---------------------> LOGO <--------------------- */}
           <Image
             source={require("./../../images/logo.png")}
             style={styles._logo}
           />
-          <TouchableOpacity style={styles._done_btn}>
+
+          {/* ---------------------> DONE BUTTON <--------------------- */}
+          <TouchableOpacity style={styles._done_btn} onPress={() => props.navigation.navigate("Profile")}>
             <Text style={styles._done_btn_text}>Done</Text>
           </TouchableOpacity>
         </View>
@@ -128,8 +143,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     color: "black",
     width: "50%",
-    alignSelf:"center",
-    marginTop:20
+    alignSelf: "center",
+    marginTop: 20
   },
   _header: {
     flexDirection: "row",
@@ -154,7 +169,7 @@ const styles = StyleSheet.create({
   },
   _buttons_main: {
     marginTop: 30,
-    alignSelf:"center"
+    alignSelf: "center"
   },
   _button: {
     marginBottom: 10,
@@ -172,7 +187,7 @@ const styles = StyleSheet.create({
     width: 169,
     height: 126,
     alignSelf: "center",
-    marginTop:30
+    marginTop: 30
   },
   _done_btn: {
     alignSelf: "center",
@@ -183,30 +198,30 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#0D5DE8",
   },
-  _date_show:{
-    backgroundColor:"#D6DED5",
-    fontSize:16,
-    color:"#0D5DE8",
-    textAlign:"center",
-    fontWeight:"bold",
-    width:"50%",
-    alignSelf:"center",
-    borderRadius:5
+  _date_show: {
+    backgroundColor: "#D6DED5",
+    fontSize: 16,
+    color: "#0D5DE8",
+    textAlign: "center",
+    fontWeight: "bold",
+    width: "50%",
+    alignSelf: "center",
+    borderRadius: 5
   },
-  enter_tally:{
-    fontSize:21,
-    fontWeight:"bold",
-  color:"black",
-textAlign:"center" ,
-marginTop:10
- },
- select_type:{
-  fontSize:21,
-  fontWeight:"bold",
-color:"black",
-textAlign:"center" ,
-marginTop:20
- }
+  enter_tally: {
+    fontSize: 21,
+    fontWeight: "bold",
+    color: "black",
+    textAlign: "center",
+    marginTop: 10
+  },
+  select_type: {
+    fontSize: 21,
+    fontWeight: "bold",
+    color: "black",
+    textAlign: "center",
+    marginTop: 20
+  }
 });
 
 export default AddDay;

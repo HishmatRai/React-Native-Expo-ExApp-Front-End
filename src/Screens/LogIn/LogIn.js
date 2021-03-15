@@ -12,10 +12,8 @@ import {
 import { FontAwesome, EvilIcons } from "@expo/vector-icons";
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
-
 const login = (props) => {
   const [dimensions, setDimensions] = useState({ window, screen });
-
   const onChange = ({ window, screen }) => {
     setDimensions({ window, screen });
   };
@@ -29,21 +27,31 @@ const login = (props) => {
 
   return (
     <View style={styles.container}>
+
+      {/* ---------------------> STATUS BAR <--------------------- */}
       <StatusBar
         barStyle="dark-content"
         hidden={false}
         backgroundColor="white"
         translucent={true}
       />
+
+      {/* ---------------------> BODY <--------------------- */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles._main}>
+
+          {/* ---------------------> HEADING <--------------------- */}
           <Text style={styles._login_heading}>Login</Text>
           <Text style={styles._login_sub_heading}>
             Add your details to login
           </Text>
+
+          {/* ---------------------> EMAIL INPUT <--------------------- */}
           <View style={styles._email_input_view}>
             <TextInput style={styles._input} placeholder="Your Email" />
           </View>
+
+          {/* ---------------------> PASSWORD INPUT <--------------------- */}
           <View style={styles._email_input_view}>
             <TextInput
               style={styles._input}
@@ -51,19 +59,24 @@ const login = (props) => {
               secureTextEntry={true}
             />
           </View>
+
+          {/* ---------------------> LOGIN  <--------------------- */}
           <TouchableOpacity
             style={styles.button}
-            onPress={() => props.navigation.navigate("")}
+            onPress={() => props.navigation.navigate("EndofRun")}
           >
             <Text style={styles._button_txt}>login</Text>
           </TouchableOpacity>
 
+          {/* ---------------------> FORGOT PASSOWRD <--------------------- */}
           <TouchableOpacity style={styles._forgot_btn}>
             <Text style={styles._forgot_btn_Text}>Forgot your password?</Text>
           </TouchableOpacity>
 
+          {/* ---------------------> LOGIN IN ANOTHER ACCOUNTS <--------------------- */}
           <Text style={styles._or}>or Login With</Text>
 
+          {/* ---------------------> FACEBOOK <--------------------- */}
           <TouchableOpacity
             style={styles._facebook_button}
             onPress={() => props.navigation.navigate("")}
@@ -72,6 +85,7 @@ const login = (props) => {
             <Text style={styles.facebook__button_txt}>Login with Facebook</Text>
           </TouchableOpacity>
 
+          {/* ---------------------> GOOGLE <--------------------- */}
           <TouchableOpacity
             style={styles._google_button}
             onPress={() => props.navigation.navigate("")}
@@ -80,6 +94,7 @@ const login = (props) => {
             <Text style={styles.google__button_txt}>Login with Google</Text>
           </TouchableOpacity>
 
+          {/* ---------------------> SIGN UP <--------------------- */}
           <View style={styles._sign_up_main}>
             <Text style={styles._sign_up_text}>Don't have an Account?</Text>
             <TouchableOpacity style={styles._sign_up_button}>

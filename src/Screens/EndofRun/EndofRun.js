@@ -10,11 +10,9 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { FontAwesome, Entypo } from "@expo/vector-icons";
 import Rating from "./../../Components/StartRating/StartRating";
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
-
 const EndofRun = (props) => {
   const [dimensions, setDimensions] = useState({ window, screen });
   const [active, setActive] = useState(0);
@@ -30,6 +28,7 @@ const EndofRun = (props) => {
     };
   });
   let _Shearing_Btn_Data = [{ value: "Shearing" }, { value: "Cruching" }];
+
   let ButtonsValue = [
     { value: "Lambs" },
     { value: "Hoggest" },
@@ -37,20 +36,31 @@ const EndofRun = (props) => {
   ];
   return (
     <View style={styles.container}>
+      {/* ---------------------> STATUS BAR <--------------------- */}
       <StatusBar
         barStyle="dark-content"
         hidden={false}
         backgroundColor="white"
         translucent={true}
       />
+
+      {/* ---------------------> BODY <--------------------- */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles._main}>
+
+          {/* ---------------------> RATING <--------------------- */}
           <Rating />
+
+          {/* ---------------------> HEADING <--------------------- */}
           <Text style={styles._great_job_heading}>Great Job!</Text>
+
+          {/* ---------------------> LOGO <--------------------- */}
           <Image
             source={require("./../../images/logo.png")}
             style={styles._logo}
           />
+
+          {/* ---------------------> SHEARIGN BUTTONS <--------------------- */}
           <View style={styles._Shearing_btn_main}>
             {_Shearing_Btn_Data.map((v, i) => {
               return (
@@ -59,16 +69,16 @@ const EndofRun = (props) => {
                   style={
                     active === i
                       ? {
-                          backgroundColor: "#31F10C",
-                          borderRadius: 5,
-                          width: "30%",
-                          padding: 10,
-                        }
+                        backgroundColor: "#31F10C",
+                        borderRadius: 5,
+                        width: "30%",
+                        padding: 10,
+                      }
                       : {
-                          backgroundColor: "#D6DED5",
-                          width: "40%",
-                          padding: 10,
-                        }
+                        backgroundColor: "#D6DED5",
+                        width: "40%",
+                        padding: 10,
+                      }
                   }
                 >
                   <Text style={styles._Shearing_btn_text}>{v.value}</Text>
@@ -77,11 +87,13 @@ const EndofRun = (props) => {
             })}
           </View>
 
+          {/* ---------------------> TALLY AND TYPE <--------------------- */}
           <Text style={styles._enter_tally}>Enter Tally and Type</Text>
           <TouchableOpacity style={styles._tally_btn}>
             <Text style={styles._tally_btn_text}>Tally</Text>
           </TouchableOpacity>
 
+          {/* ---------------------> LAMBS BUTTOS <--------------------- */}
           <View style={styles._buttons_main}>
             {ButtonsValue.map((v, i) => {
               return (
@@ -91,33 +103,33 @@ const EndofRun = (props) => {
                   style={
                     activeBtn === i
                       ? {
-                          backgroundColor: "#D6DED5",
-                          borderRadius: 5,
-                          width: 100,
-                          paddingTop: 0,
-                        }
+                        backgroundColor: "#D6DED5",
+                        borderRadius: 5,
+                        width: 100,
+                        paddingTop: 0,
+                      }
                       : {
-                          backgroundColor: "white",
-                          width: 100,
-                          padding: 0,
-                        }
+                        backgroundColor: "white",
+                        width: 100,
+                        padding: 0,
+                      }
                   }
                 >
                   <Text
                     style={
                       activeBtn === i
                         ? {
-                            textAlign: "center",
-                            fontSize: 17,
-                            fontWeight: "bold",
-                            color: "black",
-                          }
+                          textAlign: "center",
+                          fontSize: 17,
+                          fontWeight: "bold",
+                          color: "black",
+                        }
                         : {
-                            textAlign: "center",
-                            fontSize: 17,
-                            fontWeight: "bold",
-                            color: "#A6A6A6",
-                          }
+                          textAlign: "center",
+                          fontSize: 17,
+                          fontWeight: "bold",
+                          color: "#A6A6A6",
+                        }
                     }
                   >
                     {v.value}
@@ -126,10 +138,13 @@ const EndofRun = (props) => {
               );
             })}
           </View>
+
+          {/* ---------------------> ADD NOTE <--------------------- */}
           <Text style={styles._add_note}>Add Note</Text>
           <TextInput style={styles._input} />
 
-          <TouchableOpacity style={styles._done_btn}>
+          {/* ---------------------> DONE <--------------------- */}
+          <TouchableOpacity style={styles._done_btn} onPress={() => props.navigation.navigate("Run")}>
             <Text style={styles._done_btn_text}>Done</Text>
           </TouchableOpacity>
         </View>
@@ -155,7 +170,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     color: "black",
     width: 300,
-    marginTop:20
+    marginTop: 20
   },
   _great_job_heading: {
     fontSize: 26,
@@ -224,8 +239,8 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "black",
     fontWeight: "bold",
-    textAlign:"center",
-    marginTop:20
+    textAlign: "center",
+    marginTop: 20
   },
 });
 
